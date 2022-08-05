@@ -38,11 +38,8 @@ public class TaskController {
     }
 
     @PutMapping(path = "{taskId}")
-    public void updateTask(@PathVariable("taskId") Long taskId, @RequestParam(required = false) String name,
-            @RequestParam(required = false) String description,
-            @RequestParam(required = false) String importance,
-            @RequestParam(required = false) Boolean finished) {
-        taskService.updateTask(taskId, name, description, importance, finished);
+    public void updateTask(@PathVariable("taskId") Long taskId, @RequestBody Task task) {
+        taskService.updateTask(taskId, task);
     }
 
 }

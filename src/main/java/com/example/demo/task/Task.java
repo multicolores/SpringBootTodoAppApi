@@ -1,11 +1,14 @@
 package com.example.demo.task;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tasks")
 public class Task {
+    @Id
+
     private Long id;
     private String name;
     private String description;

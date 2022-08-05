@@ -33,27 +33,15 @@ public class TaskService {
     }
 
     @Transactional
-    public void updateTask(Long taskId, String name, String description, String importance, boolean finished) {
+    public void updateTask(Long taskId, Task newTask) {
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new IllegalStateException("Task with id " + taskId + " does not exists"));
 
-        if (name != null && name.length() > 0 && !Objects.equals(task.getName(), name)) {
-            task.setName(name);
-        }
-
-        if (description != null && description.length() > 0 && !Objects.equals(task.getDescription(), description)) {
-            task.setDescription(description);
-        }
-
-        if (importance != null && importance.length() > 0 && !Objects.equals(task.getImportance(), importance)) {
-            task.setImportance(importance);
-        }
-
-        if (finished == true || finished == false) {
-            if (!Objects.equals(task.isFinished(), finished)) {
-                task.setFinished(finished);
-            }
-        }
+        task.setName(newTask.getName());
+        task.setDescription(newTask.getDescription());
+        task.setImportance(newTask.getImportance());
+        task.setFinished(newTask.isFinished());
 
     }
+
 }
